@@ -1,4 +1,3 @@
-
 'use strict';
 
 window.requestAnimFrame = (function(callback) {
@@ -25,21 +24,21 @@ TLPainter.prototype.init = function() {
 
   this.bindings();
 
-  // var doFrame = function (time) {
-  //   if ( lastTime === null ) {
-  //     lastTime = time;
-  //   }
+  var doFrame = function (time) {
+    if ( lastTime === null ) {
+      lastTime = time;
+    }
 
-  //   var delta = (time - lastTime) / 1000;
-  //   lastTime = time;
+    var delta = (time - lastTime) / 1000;
+    lastTime = time;
 
-  //   self.update(delta);
-  //   self.render(delta);
+    self.update(delta);
+    self.render(delta);
 
-  //   window.requestAnimFrame(doFrame);
-  // }
+    window.requestAnimFrame(doFrame);
+  }
 
-  // window.requestAnimFrame(doFrame);
+  window.requestAnimFrame(doFrame);
 };
 
 TLPainter.prototype.bindings = function () {
@@ -59,11 +58,44 @@ TLPainter.prototype.bindings = function () {
 };
 
 TLPainter.prototype.update = function (delta) {
-
+  // Logic to update
 };
 
 TLPainter.prototype.render = function (delta) {
   // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  // Logic to render
+};
+
+TLPainter.prototype.colorTimeLapse = function (delta) {
+  var color = 'red';
+
+  var formatColor = function (i) {
+    if (i.length < 2) {
+      i = '0' + i;
+    }
+    return i;
+  };
+
+  var timeColor = function (hour, min, sec) {
+    var red = Math.round(255 * (hour / 23)).toString(16);
+    var green = Math.round(255 * (min / 59)).toString(16);
+    var blue = Math.round(255 * (sec / 59)).toString(16);
+
+    red = formatColor(red);
+    green = formatColor(green);
+    blue = formatColor(blue);
+
+    return (red + green + blue).toUpperCase();
+  };
+
+  var now = new Date();
+  var hour =  now.getHours();
+  var min =  now.getMinutes();
+  var sec =  now.getSeconds();
+  color = timeColor(hour, min, sec);
+
+
+  return color;
 };
 
 
@@ -82,6 +114,8 @@ TLPainter.prototype.draw = function(e) {
   if (e.type === 'mousemove') {
     if (self.isDrawing) {
       self.ctx.lineTo(x, y);
+      self.ctx.strokeStyle = self.colorTimeLapse();
+      self.ctx.lineWidth = 3;
       self.ctx.stroke();
       console.log('mousemove');
     }

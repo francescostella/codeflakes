@@ -1,0 +1,11 @@
+# Site settings
+title: Codeflakes
+email: xeth23@gmail.com
+description: "Daily codes flakes, freshly cooked"
+baseurl: ""
+twitter_username: francescostella
+github_username:  francescostella
+
+# Build settings
+markdown: kramdown
+permalink: pretty

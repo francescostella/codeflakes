@@ -1,0 +1,16 @@
+body {
+  background-color: $bg-color;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Henny Penny', cursive;
+
+  color: $color;
+  font-size: 50px;
+  text-align: center;
+
+  span {
+    color: #fff;
+  }
+}

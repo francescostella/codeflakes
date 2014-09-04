@@ -3,55 +3,30 @@
 
 // Reset
 @import '_vendors/normalize';
+@import '_globals/variables';
+@import '_globals/generals';
 
-$bg-color: #5fb1d6;
-$color: #1975a4;
-$shadow: #16567a;
-$yellow: #f3d93c;
-$dark-yellow: #ebba20;
-$far-shadow: #52a5cf;
-$ghost: #8dc9e1;
+html {
+  height: 100%;
+  min-height: 100%
+}
 
 body {
-  background-color: $bg-color;
-  font-family: 'Henny Penny', cursive;
-
-  -webkit-transition: background-color .2s ease-in-out;
-  transition: background-color .2s ease-in-out;
+  overflow: hidden;
+  height: 100%;
 }
 
-h1 {
-  color: $color;
-  font-size: 50px;
-  text-align: center;
-  text-shadow: 2px 2px 0 $shadow;
-
-  span {
-    color: #fff;
-  }
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-// Elements
-$red-button: #FF0051;
-button {
-  display: block; // It allows to center the element
-  margin: 0 auto;
-  outline: none; // It prevents default webkit outline
-  background: $red-button;
-  color: #EBE54D;
-  border: none;
-  border-radius: 5px;
-  padding: 25px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 800;
-  box-shadow: 2px 2px 0 $shadow;
-}
-
-button:hover {
-  background: lighten($red-button, 10%);
-}
-
-button:active {
-  background: darken($red-button, 10%);
-  margin-top: 1px;
+#tmp_canvas {
+  position: absolute;
+  left: 0px; right: 0;
+  bottom: 0; top: 0;
+  cursor: crosshair;
 }
